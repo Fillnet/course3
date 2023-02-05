@@ -1,8 +1,5 @@
 package com.example.course3.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-
 public enum Size {
     L(44),
 
@@ -19,20 +16,5 @@ public enum Size {
     Size(int valueSize) {
         this.valueSize = valueSize;
     }
-//
-//    @JsonValue
-//
-//    public int getValueSize() {
-//        return getValueSize();
-//    }
-//
-//    @JsonCreator
-//    public Size forValues(int valueSize) {
-//        for (Size s : Size.values()) {
-//            if (s.valueSize == valueSize) {
-//                return s;
-//            }
-//        }
-//        return null;
-//    }
+
 }

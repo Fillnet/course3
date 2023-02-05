@@ -110,7 +110,8 @@ public class SockController {
     @Operation(
             summary = "Списание",
             description = "Списание бракованых носков на складе"
-    )@ApiResponses(value = {
+    )
+    @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
                     description = "Запрос выполнен, товар списан со склада."),

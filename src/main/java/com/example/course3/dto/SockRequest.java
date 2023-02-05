@@ -13,5 +13,5 @@ public class SockRequest {
     private Color color;
     private Size size;
     private int cottonPercent;
-    private  int quantity;
+    private int quantity;
 }

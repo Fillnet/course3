@@ -1,16 +1,20 @@
 package com.example.course3.service;
 
 import com.example.course3.dto.SockRequest;
+import com.example.course3.model.Color;
+import com.example.course3.model.Size;
 
-import java.io.IOException;
-import java.nio.file.Path;
 
 public interface SockService {
     void addSock(SockRequest sockRequest);
 
-//    void readFromFile();
+
+    void removeDefectiveSock(SockRequest sockRequest);
+
+    void issueSock(SockRequest sockRequest);
+
+    int getSockQuantity(Color color, Size size, Integer cottonMin, Integer cottonMax);
 
     void saveToFile();
 
-//    Path createSockFile() throws IOException;
 }

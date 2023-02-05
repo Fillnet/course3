@@ -1,10 +1,10 @@
 package com.example.course3.service.impl;
 
-import com.example.course3.dto.SockRequest;
 import com.example.course3.exception.ExceptionWithOperationFile;
 import com.example.course3.model.Sock;
 import com.example.course3.service.FileService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -12,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
-import io.swagger.v3.oas.annotations.Operation;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,19 +30,12 @@ public class FileServiceImpl implements FileService {
     private String dataFilePath;
     @Value("${name.of.data.file}")
     private String dataFileName;
-//    @Override
-//    public String readFromFile() {
-//        try {
-//            return Files.readString(Path.of(dataFilePath, dataFileName));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            throw new ExceptionWithOperationFile("Ошибка чтения из файла");
-//        }
-//    }
+
     @Override
     public File getDataFile() {
         return new File(dataFilePath + "/" + dataFileName);
     }
+
     @Override
     public boolean saveToFile(String json) {
         try {
@@ -56,41 +48,6 @@ public class FileServiceImpl implements FileService {
         }
     }
 
-//    @Override
-//    public FileSystemResource exportData() {
-//        try {
-//            Path path = Files.createTempFile("export", ".json");
-//            List<SockRequest> sockRequestList = new ArrayList<>();
-//            for (Map.Entry<Sock, Integer> entry : this.socks.entrySet()) {
-//                sockRequestList.add(mapRequest(entry.getKey(), entry.getValue()));
-//            }
-//            Files.write(path, objectMapper.writeValueAsBytes(sockRequestList));
-//            return new FileSystemResource(path);
-//        } catch (IOException e) {
-//            throw new ExceptionWithOperationFile("Ошибка экспорта файла");
-//        }
-//            public ResponseEntity<InputStreamResource> downloadDataFile() throws FileNotFoundException {
-//        File dataFile = getDataFile();
-//        if (dataFile.exists()) {
-//            InputStreamResource resource = new InputStreamResource(new FileInputStream((dataFile)));
-//            return ResponseEntity.ok()
-//                    .contentType(MediaType.APPLICATION_JSON)
-//                    .contentLength(dataFile.length())
-//                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"SocksData.json\"")
-//                    .body(resource);
-//        } else {
-//            return ResponseEntity.noContent().build();
-//        }
-//    }
-
-//    private SockRequest mapRequest(Sock sock, int quantity) {
-//        SockRequest sockRequest = new SockRequest();
-//        sockRequest.setColor(sock.getColor());
-//        sockRequest.setSize(sock.getSize());
-//        sockRequest.setCottonPercent(sock.getCottonPercent());
-//        sockRequest.setQuantity(quantity);
-//        return sockRequest;
-//    }
 
     @Override
     public boolean cleanDataFile() {
@@ -105,6 +62,7 @@ public class FileServiceImpl implements FileService {
             return false;
         }
     }
+
     @Override
     @GetMapping(value = "/export/socks", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
@@ -125,15 +83,5 @@ public class FileServiceImpl implements FileService {
         }
 
     }
-
-//    @Override
-//    public Path createTempFile(String suffix) {
-//        try {
-//            return Files.createTempFile(Path.of(dataFilePath), "tempFile", suffix);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            throw new RuntimeException();
-//        }
-//    }
 
 }
