@@ -1,0 +1,22 @@
+###
+POST http://localhost:8080/api/sock
+Content-Type: application/json
+
+{
+  "color": "RED",
+  "size": "S",
+  "cottonPercent": 50,
+  "quantity": 110
+}
+###
+GET http://localhost:8080/api/sock
+###
+PUT http://localhost:8080/api/sock
+Content-Type: application/json
+
+{
+  "color": "RED",
+  "size": "S",
+  "cottonPercent": -50,
+  "quantity": 110
+}
